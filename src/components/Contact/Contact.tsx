@@ -76,7 +76,7 @@ const Contact: React.FC<ContactProps> = () => {
                                                       </div>
                                                       <div className={styles.infoContent}>
                                                             <h4>Email</h4>
-                                                            <p>john.doe@example.com</p>
+                                                            <p>alan.koye277@gmail.com</p>
                                                       </div>
                                                 </div>
                                                 <div className={styles.infoItem}>
@@ -85,7 +85,7 @@ const Contact: React.FC<ContactProps> = () => {
                                                       </div>
                                                       <div className={styles.infoContent}>
                                                             <h4>Phone</h4>
-                                                            <p>+1 (555) 123-4567</p>
+                                                            <p>+964 750 375 6011</p>
                                                       </div>
                                                 </div>
                                                 <div className={styles.infoItem}>
@@ -94,7 +94,7 @@ const Contact: React.FC<ContactProps> = () => {
                                                       </div>
                                                       <div className={styles.infoContent}>
                                                             <h4>Location</h4>
-                                                            <p>New York, NY</p>
+                                                            <p>Erbil, Iraq</p>
                                                       </div>
                                                 </div>
                                           </div>
@@ -103,7 +103,7 @@ const Contact: React.FC<ContactProps> = () => {
                                                 <h4>Follow Me</h4>
                                                 <div className={styles.socialLinks}>
                                                       <a
-                                                            href="https://github.com/yourusername"
+                                                            href="https://github.com/Alankoye1"
                                                             target="_blank"
                                                             rel="noopener noreferrer"
                                                             className={styles.socialLink}
@@ -112,7 +112,7 @@ const Contact: React.FC<ContactProps> = () => {
                                                             <i className="fab fa-github"></i>
                                                       </a>
                                                       <a
-                                                            href="https://linkedin.com/in/yourusername"
+                                                            href="https://linkedin.com/in/alanazadakram"
                                                             target="_blank"
                                                             rel="noopener noreferrer"
                                                             className={styles.socialLink}

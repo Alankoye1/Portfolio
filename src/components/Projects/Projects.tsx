@@ -21,40 +21,29 @@ const Projects: React.FC<ProjectsProps> = () => {
       const projects: Project[] = [
             {
                   id: 1,
-                  title: 'E-Commerce Platform',
-                  description: 'A full-stack e-commerce platform with React, Node.js, and MongoDB. Features include user authentication, product management, shopping cart, and payment integration.',
-                  image: '/images/projects/ecommerce.jpg',
-                  technologies: ['React', 'Node.js', 'MongoDB', 'Express', 'Stripe', 'TypeScript'],
-                  githubUrl: 'https://github.com/yourusername/ecommerce',
-                  liveUrl: 'https://ecommerce-demo.vercel.app',
-                  category: 'Full Stack',
+                  title: 'Fitness Planner',
+                  description: 'A comprehensive fitness mobile application built with Flutter. Features include BMI calculator, calorie calculator, and workout tracking to help users achieve their fitness goals.',
+                  image: '/images/projects/fitness.jpg',
+                  technologies: ['Flutter', 'Dart', 'Firebase'],
+                  githubUrl: 'https://github.com/Alankoye1',
+                  liveUrl: '#',
+                  category: 'Mobile',
                   featured: true
             },
             {
                   id: 2,
-                  title: 'Social Media Dashboard',
-                  description: 'A responsive dashboard for social media analytics built with React and D3.js. Features real-time data visualization and interactive charts.',
-                  image: '/images/projects/dashboard.jpg',
-                  technologies: ['React', 'D3.js', 'TypeScript', 'TailwindCSS', 'Chart.js'],
-                  githubUrl: 'https://github.com/yourusername/dashboard',
-                  liveUrl: 'https://dashboard-demo.netlify.app',
-                  category: 'Frontend',
+                  title: 'Erbil Soccer Club',
+                  description: 'A mobile application for Erbil Soccer Club fans. Features include match schedules and results, latest news updates, and an interactive fan zone for the community.',
+                  image: '/images/projects/soccer.jpg',
+                  technologies: ['Flutter', 'Dart', 'Firebase'],
+                  githubUrl: 'https://github.com/Alankoye1',
+                  liveUrl: '#',
+                  category: 'Mobile',
                   featured: true
-            },
-            {
-                  id: 3,
-                  title: 'Task Management API',
-                  description: 'A RESTful API for task management with JWT authentication, CRUD operations, and PostgreSQL database integration.',
-                  image: '/images/projects/api.jpg',
-                  technologies: ['Node.js', 'Express', 'PostgreSQL', 'JWT', 'Prisma'],
-                  githubUrl: 'https://github.com/yourusername/task-api',
-                  liveUrl: 'https://task-api.herokuapp.com',
-                  category: 'Backend',
-                  featured: false
             }
       ];
 
-      const categories: string[] = ['All', 'Full Stack', 'Frontend', 'Backend'];
+      const categories: string[] = ['All', 'Mobile'];
 
       const filteredProjects: Project[] = filter === 'All'
             ? projects

@@ -12,7 +12,7 @@ interface WorkExperience {
   type: 'work' | 'education';
 }
 
-interface ExperienceProps {}
+interface ExperienceProps { }
 
 const Experience: React.FC<ExperienceProps> = () => {
   const [activeTab, setActiveTab] = useState<'work' | 'education'>('work');
@@ -20,77 +20,32 @@ const Experience: React.FC<ExperienceProps> = () => {
   const experiences: WorkExperience[] = [
     {
       id: 1,
-      company: 'Tech Innovation Corp',
-      position: 'Senior Full Stack Developer',
-      duration: '2022 - Present',
-      location: 'New York, NY',
+      company: 'Freelance / Personal Projects',
+      position: 'Mobile Application Developer',
+      duration: '2025 - Present',
+      location: 'Erbil, Iraq',
       description: [
-        'Lead development of scalable web applications using React, Node.js, and AWS',
-        'Architected and implemented microservices infrastructure serving 100K+ users',
-        'Mentored junior developers and conducted code reviews',
-        'Collaborated with cross-functional teams to deliver high-quality products'
+        'Developed cross-platform mobile applications using Flutter and Dart',
+        'Built Fitness Planner app with BMI calculator, calorie tracking, and workout features',
+        'Created Erbil Soccer Club app with match schedules, news, and fan zone',
+        'Integrated Firebase for backend services and real-time data management'
       ],
-      technologies: ['React', 'TypeScript', 'Node.js', 'AWS', 'MongoDB', 'Docker'],
+      technologies: ['Flutter', 'Dart', 'Firebase', 'MySQL'],
       type: 'work'
     },
     {
       id: 2,
-      company: 'Digital Solutions Ltd',
-      position: 'Full Stack Developer',
-      duration: '2020 - 2022',
-      location: 'San Francisco, CA',
+      company: 'Erbil Polytechnic University',
+      position: 'Bachelor in Information System Technology',
+      duration: 'Present',
+      location: 'Erbil, Iraq',
       description: [
-        'Developed and maintained e-commerce platforms using MERN stack',
-        'Implemented payment integration with Stripe and PayPal',
-        'Optimized application performance resulting in 40% faster load times',
-        'Built responsive user interfaces following modern design principles'
+        'Undergraduate student in Information System Technology',
+        'Studying software development, databases, and system design',
+        'Working on practical projects involving mobile and web development',
+        'Learning MySQL, Oracle, and modern development frameworks'
       ],
-      technologies: ['React', 'Express.js', 'MongoDB', 'Stripe', 'Redux', 'Sass'],
-      type: 'work'
-    },
-    {
-      id: 3,
-      company: 'StartupX',
-      position: 'Frontend Developer',
-      duration: '2019 - 2020',
-      location: 'Austin, TX',
-      description: [
-        'Built interactive dashboards and data visualization components',
-        'Collaborated with UX/UI designers to implement pixel-perfect designs',
-        'Integrated RESTful APIs and managed application state',
-        'Participated in agile development processes and sprint planning'
-      ],
-      technologies: ['React', 'D3.js', 'JavaScript', 'CSS3', 'Git', 'Figma'],
-      type: 'work'
-    },
-    {
-      id: 4,
-      company: 'University of Technology',
-      position: 'Bachelor of Science in Computer Science',
-      duration: '2015 - 2019',
-      location: 'Boston, MA',
-      description: [
-        'Graduated Magna Cum Laude with 3.8 GPA',
-        'Specialized in Software Engineering and Web Development',
-        'Completed senior project on machine learning applications',
-        'Active member of Computer Science Society and Coding Club'
-      ],
-      technologies: ['Java', 'Python', 'C++', 'SQL', 'Git', 'Linux'],
-      type: 'education'
-    },
-    {
-      id: 5,
-      company: 'Code Academy',
-      position: 'Full Stack Web Development Bootcamp',
-      duration: '2018',
-      location: 'Online',
-      description: [
-        'Intensive 6-month program covering modern web development',
-        'Built 15+ projects using various technologies and frameworks',
-        'Collaborated on team projects using agile methodologies',
-        'Received certification in Full Stack Web Development'
-      ],
-      technologies: ['HTML5', 'CSS3', 'JavaScript', 'React', 'Node.js', 'MongoDB'],
+      technologies: ['Flutter', 'JavaScript', 'PHP', 'MySQL', 'Oracle', 'Firebase'],
       type: 'education'
     }
   ];
@@ -132,7 +87,7 @@ const Experience: React.FC<ExperienceProps> = () => {
 
         <div className={styles.timeline}>
           {filteredExperiences.map((exp, index) => (
-            <div 
+            <div
               key={exp.id}
               className={styles.timelineItem}
               style={{ animationDelay: `${index * 0.1}s` }}
@@ -141,7 +96,7 @@ const Experience: React.FC<ExperienceProps> = () => {
                 <div className={styles.markerDot}></div>
                 <div className={styles.markerLine}></div>
               </div>
-              
+
               <div className={styles.timelineContent}>
                 <div className={styles.experienceCard}>
                   <div className={styles.cardHeader}>

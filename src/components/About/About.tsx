@@ -11,10 +11,10 @@ interface AboutProps { }
 
 const About: React.FC<AboutProps> = () => {
       const skills: Skill[] = [
-            { name: 'React', icon: 'fab fa-react', level: 95 },
-            { name: 'TypeScript', icon: 'fab fa-js-square', level: 90 },
-            { name: 'Node.js', icon: 'fab fa-node-js', level: 85 },
-            { name: 'Python', icon: 'fab fa-python', level: 80 }
+            { name: 'Flutter', icon: 'fas fa-mobile-alt', level: 85 },
+            { name: 'JavaScript', icon: 'fab fa-js-square', level: 50 },
+            { name: 'React', icon: 'fab fa-react', level: 40 },
+            { name: 'Laravel', icon: 'fab fa-laravel', level: 40 }
       ];
 
       return (
@@ -29,50 +29,50 @@ const About: React.FC<AboutProps> = () => {
 
                                     <div className={styles.textContent}>
                                           <p className={styles.intro}>
-                                                Hello! I'm John Doe, a passionate full-stack developer with over 3 years of experience
-                                                building modern web applications. I specialize in React, TypeScript, and Node.js,
-                                                creating scalable and user-friendly solutions.
+                                                Hello! I'm Alan Azad Akram, an advanced mobile application developer with 1 year of
+                                                experience building cross-platform apps using Flutter. I'm also an undergraduate student
+                                                studying Information System Technology at Erbil Polytechnic University.
                                           </p>
 
                                           <p className={styles.description}>
-                                                My journey in web development started with a curiosity about how websites work.
-                                                Since then, I've been constantly learning and evolving my skills to stay current
-                                                with the latest technologies and best practices.
+                                                My journey in development started with a passion for mobile applications.
+                                                I've built projects ranging from fitness planners to sports club apps,
+                                                and I'm constantly expanding my skills across web and backend technologies.
                                           </p>
 
                                           <p className={styles.passion}>
-                                                I believe in writing clean, maintainable code and creating seamless user experiences.
-                                                When I'm not coding, you can find me exploring new technologies, contributing to
-                                                open-source projects, or sharing knowledge with the developer community.
+                                                Beyond mobile development, I have foundational knowledge in JavaScript, PHP,
+                                                React, and Laravel. I work with databases like MySQL, Oracle, and Firebase
+                                                to build complete, data-driven applications.
                                           </p>
                                     </div>
 
                                     <div className={styles.highlights}>
                                           <div className={styles.highlight}>
                                                 <div className={styles.highlightIcon}>
-                                                      <i className="fas fa-code"></i>
-                                                </div>
-                                                <div className={styles.highlightContent}>
-                                                      <h4>Clean Code</h4>
-                                                      <p>Writing maintainable and scalable code</p>
-                                                </div>
-                                          </div>
-                                          <div className={styles.highlight}>
-                                                <div className={styles.highlightIcon}>
                                                       <i className="fas fa-mobile-alt"></i>
                                                 </div>
                                                 <div className={styles.highlightContent}>
-                                                      <h4>Responsive Design</h4>
-                                                      <p>Creating seamless experiences across devices</p>
+                                                      <h4>Mobile Development</h4>
+                                                      <p>Building cross-platform apps with Flutter</p>
                                                 </div>
                                           </div>
                                           <div className={styles.highlight}>
                                                 <div className={styles.highlightIcon}>
-                                                      <i className="fas fa-rocket"></i>
+                                                      <i className="fas fa-database"></i>
                                                 </div>
                                                 <div className={styles.highlightContent}>
-                                                      <h4>Performance</h4>
-                                                      <p>Optimizing for speed and user experience</p>
+                                                      <h4>Database Management</h4>
+                                                      <p>Working with MySQL, Oracle & Firebase</p>
+                                                </div>
+                                          </div>
+                                          <div className={styles.highlight}>
+                                                <div className={styles.highlightIcon}>
+                                                      <i className="fas fa-graduation-cap"></i>
+                                                </div>
+                                                <div className={styles.highlightContent}>
+                                                      <h4>Continuous Learning</h4>
+                                                      <p>Always expanding skills and knowledge</p>
                                                 </div>
                                           </div>
                                     </div>

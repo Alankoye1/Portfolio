@@ -15,17 +15,18 @@ const Skills: React.FC<SkillsProps> = () => {
       const [filter, setFilter] = useState<string>('All');
 
       const skills: Skill[] = [
-            { name: 'React', icon: 'fab fa-react', level: 95, category: 'Frontend', color: '#61DAFB' },
-            { name: 'TypeScript', icon: 'fab fa-js-square', level: 90, category: 'Frontend', color: '#3178C6' },
-            { name: 'Node.js', icon: 'fab fa-node-js', level: 85, category: 'Backend', color: '#339933' },
-            { name: 'Python', icon: 'fab fa-python', level: 80, category: 'Backend', color: '#3776AB' },
-            { name: 'MongoDB', icon: 'fas fa-database', level: 82, category: 'Database', color: '#47A248' },
-            { name: 'PostgreSQL', icon: 'fas fa-database', level: 78, category: 'Database', color: '#336791' },
-            { name: 'Docker', icon: 'fab fa-docker', level: 75, category: 'DevOps', color: '#2496ED' },
-            { name: 'AWS', icon: 'fab fa-aws', level: 70, category: 'DevOps', color: '#FF9900' }
+            { name: 'Flutter', icon: 'fas fa-mobile-alt', level: 85, category: 'Mobile', color: '#02569B' },
+            { name: 'Dart', icon: 'fas fa-code', level: 80, category: 'Mobile', color: '#0175C2' },
+            { name: 'JavaScript', icon: 'fab fa-js-square', level: 50, category: 'Frontend', color: '#F7DF1E' },
+            { name: 'React', icon: 'fab fa-react', level: 40, category: 'Frontend', color: '#61DAFB' },
+            { name: 'PHP', icon: 'fab fa-php', level: 45, category: 'Backend', color: '#777BB4' },
+            { name: 'Laravel', icon: 'fab fa-laravel', level: 40, category: 'Backend', color: '#FF2D20' },
+            { name: 'MySQL', icon: 'fas fa-database', level: 60, category: 'Database', color: '#4479A1' },
+            { name: 'Oracle', icon: 'fas fa-database', level: 50, category: 'Database', color: '#F80000' },
+            { name: 'Firebase', icon: 'fas fa-fire', level: 70, category: 'Database', color: '#FFCA28' }
       ];
 
-      const categories: string[] = ['All', 'Frontend', 'Backend', 'Database', 'DevOps'];
+      const categories: string[] = ['All', 'Mobile', 'Frontend', 'Backend', 'Database'];
 
       const filteredSkills: Skill[] = filter === 'All'
             ? skills
@@ -89,29 +90,29 @@ const Skills: React.FC<SkillsProps> = () => {
                         <div className={styles.statsContainer}>
                               <div className={styles.statCard}>
                                     <div className={styles.statIcon}>
+                                          <i className="fas fa-mobile-alt"></i>
+                                    </div>
+                                    <div className={styles.statContent}>
+                                          <h4>Mobile Development</h4>
+                                          <p>Advanced Flutter developer building cross-platform apps</p>
+                                    </div>
+                              </div>
+                              <div className={styles.statCard}>
+                                    <div className={styles.statIcon}>
                                           <i className="fas fa-code"></i>
                                     </div>
                                     <div className={styles.statContent}>
-                                          <h4>Languages Mastered</h4>
-                                          <p>Proficient in multiple programming languages and frameworks</p>
+                                          <h4>Web Technologies</h4>
+                                          <p>Foundational knowledge in React, JavaScript, PHP & Laravel</p>
                                     </div>
                               </div>
                               <div className={styles.statCard}>
                                     <div className={styles.statIcon}>
-                                          <i className="fas fa-tools"></i>
+                                          <i className="fas fa-database"></i>
                                     </div>
                                     <div className={styles.statContent}>
-                                          <h4>Development Tools</h4>
-                                          <p>Experienced with modern development environments and workflows</p>
-                                    </div>
-                              </div>
-                              <div className={styles.statCard}>
-                                    <div className={styles.statIcon}>
-                                          <i className="fas fa-cloud"></i>
-                                    </div>
-                                    <div className={styles.statContent}>
-                                          <h4>Cloud Platforms</h4>
-                                          <p>Deployment and scaling applications in cloud environments</p>
+                                          <h4>Databases</h4>
+                                          <p>Working with MySQL, Oracle, and Firebase</p>
                                     </div>
                               </div>
                         </div>

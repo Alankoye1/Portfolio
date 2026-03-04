@@ -22,32 +22,14 @@ const Footer: React.FC<FooterProps> = () => {
             {
                   icon: 'fab fa-github',
                   name: 'GitHub',
-                  url: 'https://github.com/yourusername',
+                  url: 'https://github.com/Alankoye1',
                   color: '#333'
             },
             {
                   icon: 'fab fa-linkedin',
                   name: 'LinkedIn',
-                  url: 'https://linkedin.com/in/yourusername',
+                  url: 'https://linkedin.com/in/alanazadakram',
                   color: '#0077B5'
-            },
-            {
-                  icon: 'fab fa-twitter',
-                  name: 'Twitter',
-                  url: 'https://twitter.com/yourusername',
-                  color: '#1DA1F2'
-            },
-            {
-                  icon: 'fab fa-instagram',
-                  name: 'Instagram',
-                  url: 'https://instagram.com/yourusername',
-                  color: '#E4405F'
-            },
-            {
-                  icon: 'fab fa-dribbble',
-                  name: 'Dribbble',
-                  url: 'https://dribbble.com/yourusername',
-                  color: '#ea4c89'
             }
       ];
 
@@ -74,11 +56,11 @@ const Footer: React.FC<FooterProps> = () => {
                                     <div className={styles.brand}>
                                           <h3 className={styles.brandName}>
                                                 <span className={styles.brandSymbol}>{'<'}</span>
-                                                John Doe
+                                                Alan Azad Akram
                                                 <span className={styles.brandSymbol}>{'/>'}</span>
                                           </h3>
                                           <p className={styles.brandTagline}>
-                                                Building digital experiences with passion and precision
+                                                Building mobile experiences with Flutter and passion
                                           </p>
                                     </div>
                                     <div className={styles.socialLinks}>
@@ -130,19 +112,19 @@ const Footer: React.FC<FooterProps> = () => {
                                     <div className={styles.contactInfo}>
                                           <div className={styles.contactItem}>
                                                 <i className="fas fa-envelope"></i>
-                                                <a href="mailto:john.doe@example.com" className={styles.contactLink}>
-                                                      john.doe@example.com
+                                                <a href="mailto:alan.koye277@gmail.com" className={styles.contactLink}>
+                                                      alan.koye277@gmail.com
                                                 </a>
                                           </div>
                                           <div className={styles.contactItem}>
                                                 <i className="fas fa-phone"></i>
-                                                <a href="tel:+15551234567" className={styles.contactLink}>
-                                                      +1 (555) 123-4567
+                                                <a href="tel:+9647503756011" className={styles.contactLink}>
+                                                      +964 750 375 6011
                                                 </a>
                                           </div>
                                           <div className={styles.contactItem}>
                                                 <i className="fas fa-map-marker-alt"></i>
-                                                <span className={styles.contactText}>New York, NY</span>
+                                                <span className={styles.contactText}>Erbil, Iraq</span>
                                           </div>
                                     </div>
                               </div>
@@ -151,7 +133,7 @@ const Footer: React.FC<FooterProps> = () => {
                         <div className={styles.footerBottom}>
                               <div className={styles.copyright}>
                                     <p>
-                                          © {currentYear} John Doe. All rights reserved.
+                                          © {currentYear} Alan Azad. All rights reserved.
                                     </p>
                               </div>
                               <div className={styles.footerMeta}>

@@ -48,7 +48,7 @@ const Header: React.FC<HeaderProps> = () => {
                                     aria-label="Go to home"
                               >
                                     <span className={styles.logoSymbol}>{'<'}</span>
-                                    <span className={styles.logoText}>JohnDoe</span>
+                                    <span className={styles.logoText}>AlanAkram</span>
                                     <span className={styles.logoSymbol}>{'/>'}</span>
                               </button>
                         </div>

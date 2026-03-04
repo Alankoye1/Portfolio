@@ -14,11 +14,11 @@ const Hero: React.FC<HeroProps> = () => {
             "  experience: number;",
             "}",
             "",
-            "const john: Developer = {",
-            "  name: 'John Doe',",
-            "  skills: ['React', 'TypeScript', 'Node.js'],",
+            "const alan: Developer = {",
+            "  name: 'Alan Azad Akram',",
+            "  skills: ['Flutter', 'Dart', 'Firebase'],",
             "  passion: true,",
-            "  experience: 3",
+            "  experience: 1",
             "};"
       ];
 
@@ -55,18 +55,18 @@ const Hero: React.FC<HeroProps> = () => {
                                     </div>
 
                                     <h1 className={styles.heroTitle}>
-                                          <span className={styles.firstName}>John</span>
-                                          <span className={styles.lastName}>Doe</span>
+                                          <span className={styles.firstName}>Alan Azad</span>
+                                          <span className={styles.lastName}>Akram</span>
                                     </h1>
 
                                     <div className={styles.heroSubtitle}>
-                                          <span className={styles.role}>Full Stack Developer</span>
-                                          <span className={styles.specialization}>& TypeScript Enthusiast</span>
+                                          <span className={styles.role}>Mobile App Developer</span>
+                                          <span className={styles.specialization}>& Flutter Enthusiast</span>
                                     </div>
 
                                     <p className={styles.heroDescription}>
-                                          I create beautiful, functional, and user-friendly digital experiences using modern web technologies.
-                                          Passionate about clean code, performance optimization, and building scalable applications.
+                                          I build modern, cross-platform mobile applications using Flutter.
+                                          Passionate about creating seamless user experiences and bringing ideas to life on mobile.
                                     </p>
 
                                     <div className={styles.heroActions}>
@@ -90,7 +90,7 @@ const Hero: React.FC<HeroProps> = () => {
 
                                     <div className={styles.socialLinks}>
                                           <a
-                                                href="https://github.com/yourusername"
+                                                href="https://github.com/Alankoye1"
                                                 target="_blank"
                                                 rel="noopener noreferrer"
                                                 className={styles.socialLink}
@@ -99,22 +99,13 @@ const Hero: React.FC<HeroProps> = () => {
                                                 <i className="fab fa-github"></i>
                                           </a>
                                           <a
-                                                href="https://linkedin.com/in/yourusername"
+                                                href="https://linkedin.com/in/alanazadakram"
                                                 target="_blank"
                                                 rel="noopener noreferrer"
                                                 className={styles.socialLink}
                                                 aria-label="LinkedIn Profile"
                                           >
                                                 <i className="fab fa-linkedin"></i>
-                                          </a>
-                                          <a
-                                                href="https://twitter.com/yourusername"
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                className={styles.socialLink}
-                                                aria-label="Twitter Profile"
-                                          >
-                                                <i className="fab fa-twitter"></i>
                                           </a>
                                     </div>
                               </div>
