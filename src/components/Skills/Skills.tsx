@@ -15,15 +15,15 @@ const Skills: React.FC<SkillsProps> = () => {
       const [filter, setFilter] = useState<string>('All');
 
       const skills: Skill[] = [
-            { name: 'Flutter', icon: 'fas fa-mobile-alt', level: 85, category: 'Mobile', color: '#02569B' },
-            { name: 'Dart', icon: 'fas fa-code', level: 80, category: 'Mobile', color: '#0175C2' },
-            { name: 'JavaScript', icon: 'fab fa-js-square', level: 50, category: 'Frontend', color: '#F7DF1E' },
-            { name: 'React', icon: 'fab fa-react', level: 40, category: 'Frontend', color: '#61DAFB' },
-            { name: 'PHP', icon: 'fab fa-php', level: 45, category: 'Backend', color: '#777BB4' },
-            { name: 'Laravel', icon: 'fab fa-laravel', level: 40, category: 'Backend', color: '#FF2D20' },
-            { name: 'MySQL', icon: 'fas fa-database', level: 60, category: 'Database', color: '#4479A1' },
-            { name: 'Oracle', icon: 'fas fa-database', level: 50, category: 'Database', color: '#F80000' },
-            { name: 'Firebase', icon: 'fas fa-fire', level: 70, category: 'Database', color: '#FFCA28' }
+            { name: 'Flutter', icon: 'devicon-flutter-plain', level: 70, category: 'Mobile', color: '#02569B' },
+            { name: 'Dart', icon: 'devicon-dart-plain', level: 80, category: 'Mobile', color: '#0175C2' },
+            { name: 'JavaScript', icon: 'devicon-javascript-plain', level: 20, category: 'Frontend', color: '#F7DF1E' },
+            { name: 'React', icon: 'devicon-react-original', level: 10, category: 'Frontend', color: '#61DAFB' },
+            { name: 'PHP', icon: 'devicon-php-plain', level: 10, category: 'Backend', color: '#777BB4' },
+            // { name: 'Laravel', icon: 'devicon-laravel-plain', level: 40, category: 'Backend', color: '#FF2D20' },
+            { name: 'MySQL', icon: 'devicon-mysql-plain', level: 50, category: 'Database', color: '#4479A1' },
+            { name: 'Oracle', icon: 'devicon-oracle-original', level: 50, category: 'Database', color: '#F80000' },
+            { name: 'Firebase', icon: 'devicon-firebase-plain', level: 70, category: 'Database', color: '#FFCA28' }
       ];
 
       const categories: string[] = ['All', 'Mobile', 'Frontend', 'Backend', 'Database'];
