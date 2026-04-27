@@ -13,8 +13,8 @@ const About: React.FC<AboutProps> = () => {
       const skills: Skill[] = [
             { name: 'Flutter', icon: 'devicon-flutter-plain', level: 85 },
             { name: 'JavaScript', icon: 'devicon-javascript-plain', level: 50 },
-            // { name: 'React', icon: 'devicon-react-original', level: 40 },
-            { name: 'Laravel', icon: 'devicon-laravel-plain', level: 40 }
+            { name: 'React', icon: 'devicon-react-original', level: 40 },
+            // { name: 'Laravel', icon: 'devicon-laravel-plain', level: 40 }
       ];
 
       return (
