@@ -30,7 +30,7 @@
 .content {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 4rem;
+      gap: clamp(2rem, 5vw, 4rem);
       align-items: start;
 }
 
@@ -141,7 +141,7 @@
 
 .skillsGrid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 1.5rem;
 }
 
@@ -252,7 +252,11 @@
       }
 
       .sectionTitle h2 {
-            font-size: 2.5rem;
+            font-size: clamp(2rem, 9vw, 2.5rem);
+      }
+
+      .sectionTitle p {
+            font-size: 1rem;
       }
 
       .bio h3 {
@@ -283,5 +287,17 @@
             width: 50px;
             height: 50px;
             font-size: 1.5rem;
+      }
+}
+
+@media (max-width: 480px) {
+      .highlight {
+            flex-direction: column;
+            align-items: flex-start;
+            text-align: left;
+      }
+
+      .skillCard {
+            padding: 1.25rem;
       }
 }

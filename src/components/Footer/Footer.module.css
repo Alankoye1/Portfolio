@@ -30,7 +30,7 @@
 
 .footerContent {
       display: grid;
-      grid-template-columns: 2fr 1fr 1fr 1.5fr;
+      grid-template-columns: minmax(0, 2fr) repeat(2, minmax(0, 1fr)) minmax(0, 1.5fr);
       gap: 3rem;
       margin-bottom: 2rem;
       padding-bottom: 2rem;
@@ -197,7 +197,7 @@
 
 .contactItem {
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       gap: 0.8rem;
       font-size: 0.95rem;
 }
@@ -212,6 +212,7 @@
       color: var(--text-secondary);
       text-decoration: none;
       transition: color 0.3s ease;
+      overflow-wrap: anywhere;
 }
 
 .contactLink:hover {
@@ -220,6 +221,7 @@
 
 .contactText {
       color: var(--text-secondary);
+      overflow-wrap: anywhere;
 }
 
 .footerBottom {

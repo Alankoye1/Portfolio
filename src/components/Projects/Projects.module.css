@@ -61,6 +61,7 @@
       gap: 0.5rem;
       flex-wrap: wrap;
       justify-content: center;
+      width: min(100%, 28rem);
       padding: 0.5rem;
       background: var(--bg-glass);
       backdrop-filter: blur(20px);
@@ -109,7 +110,7 @@
 
 .projectsGrid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
       gap: 2.5rem;
       margin-bottom: 4rem;
 }
@@ -273,6 +274,7 @@
       margin: 0;
       letter-spacing: -0.01em;
       line-height: 1.3;
+      overflow-wrap: anywhere;
 }
 
 .projectCategory {
@@ -466,7 +468,11 @@
       }
 
       .sectionTitle h2 {
-            font-size: 2.5rem;
+            font-size: clamp(2rem, 9vw, 2.5rem);
+      }
+
+      .sectionTitle p {
+            font-size: 1rem;
       }
 
       .filterButtons {
@@ -486,7 +492,7 @@
 
       .projectCard {
             margin: 0 auto;
-            max-width: 450px;
+            max-width: none;
       }
 
       .projectContent {
@@ -528,5 +534,20 @@
 
       .statNumber {
             font-size: 1.8rem;
+      }
+}
+
+@media (max-width: 480px) {
+      .projectImage {
+            height: 200px;
+      }
+
+      .projectContent {
+            padding: 1.25rem;
+      }
+
+      .projectLink {
+            width: 52px;
+            height: 52px;
       }
 }

@@ -67,6 +67,18 @@ const Header: React.FC<HeaderProps> = () => {
                                                 </button>
                                           </li>
                                     ))}
+                                    <li className={`${styles.navItem} ${styles.mobileResumeItem}`}>
+                                          <a
+                                                href="/resume.pdf"
+                                                download={resumeFileName}
+                                                className={styles.mobileResumeLink}
+                                                onClick={() => setIsMenuOpen(false)}
+                                                aria-label="Download CV"
+                                          >
+                                                <i className="fas fa-download"></i>
+                                                Download CV
+                                          </a>
+                                    </li>
                               </ul>
                         </nav>
 

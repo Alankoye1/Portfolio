@@ -17,6 +17,13 @@
       --border-glass: rgba(255, 255, 255, 0.1);
 }
 
+html,
+body,
+#root {
+      width: 100%;
+      max-width: 100%;
+}
+
 body {
       margin: 0;
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',

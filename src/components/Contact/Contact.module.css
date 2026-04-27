@@ -55,6 +55,7 @@
       grid-template-columns: 1fr 1.5fr;
       gap: 3rem;
       margin-bottom: 4rem;
+      align-items: start;
 }
 
 .contactInfo {
@@ -135,6 +136,7 @@
       font-size: 0.9rem;
       color: var(--text-secondary);
       margin: 0;
+      overflow-wrap: anywhere;
 }
 
 .socialSection h4 {
@@ -148,6 +150,7 @@
 .socialLinks {
       display: flex;
       gap: 1rem;
+      flex-wrap: wrap;
 }
 
 .socialLink {
@@ -207,7 +210,7 @@
 
 .formGrid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 1.5rem;
 }
 
@@ -426,7 +429,11 @@
       }
 
       .sectionTitle h2 {
-            font-size: 2.5rem;
+            font-size: clamp(2rem, 9vw, 2.5rem);
+      }
+
+      .sectionTitle p {
+            font-size: 1rem;
       }
 
       .infoCard,
@@ -454,9 +461,29 @@
 
       .infoItem {
             padding: 1.2rem;
+            align-items: flex-start;
       }
 
       .infoItem:hover {
             transform: translateY(-2px);
+      }
+}
+
+@media (max-width: 480px) {
+      .infoCard,
+      .form {
+            padding: 1.25rem;
+            border-radius: 18px;
+      }
+
+      .infoItem {
+            flex-direction: column;
+            gap: 0.9rem;
+            padding: 1rem;
+      }
+
+      .input,
+      .textarea {
+            padding: 0.9rem 1rem;
       }
 }

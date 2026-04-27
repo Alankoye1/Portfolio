@@ -64,6 +64,7 @@
       border-radius: 16px;
       padding: 0.5rem;
       gap: 0.5rem;
+      width: min(100%, 32rem);
 }
 
 .tabBtn {
@@ -82,6 +83,8 @@
       position: relative;
       overflow: hidden;
       font-family: inherit;
+      flex: 1;
+      justify-content: center;
 }
 
 .tabBtn::before {
@@ -448,7 +451,11 @@
       }
 
       .sectionTitle h2 {
-            font-size: 2.5rem;
+            font-size: clamp(2rem, 9vw, 2.5rem);
+      }
+
+      .sectionTitle p {
+            font-size: 1rem;
       }
 
       .tabs {
@@ -464,21 +471,29 @@
       }
 
       .timeline::before {
-            left: 2rem;
+            left: 1rem;
       }
 
       .timelineItem:nth-child(odd) .timelineContent,
       .timelineItem:nth-child(even) .timelineContent {
-            padding-left: 4rem;
+            padding-left: 2.75rem;
             padding-right: 0;
       }
 
       .timelineMarker {
-            left: 2rem;
+            left: 1rem;
       }
 
       .experienceCard {
-            padding: 2rem;
+            padding: 1.5rem;
+      }
+
+      .companyInfo h3.position {
+            font-size: 1.2rem;
+      }
+
+      .companyInfo h4.company {
+            font-size: 1rem;
       }
 
       .experienceMeta {
@@ -513,16 +528,16 @@
       }
 
       .timeline::before {
-            left: 1.5rem;
+            left: 0.75rem;
       }
 
       .timelineItem:nth-child(odd) .timelineContent,
       .timelineItem:nth-child(even) .timelineContent {
-            padding-left: 3rem;
+            padding-left: 2.25rem;
       }
 
       .timelineMarker {
-            left: 1.5rem;
+            left: 0.75rem;
       }
 
       .experienceCard {
@@ -530,6 +545,6 @@
       }
 
       .statsContainer {
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr;
       }
 }

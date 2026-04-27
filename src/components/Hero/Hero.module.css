@@ -1,12 +1,11 @@
 .hero {
-      min-height: 100vh;
+      min-height: 100svh;
       display: flex;
-      align-items: center;
+      align-items: stretch;
       position: relative;
       overflow: hidden;
       background: var(--bg-primary);
-      padding-top: 80px;
-      /* Account for fixed header */
+      padding: 96px 0 3rem;
 }
 
 .container {
@@ -23,11 +22,14 @@
       grid-template-columns: 1fr 1fr;
       gap: 4rem;
       align-items: center;
-      min-height: calc(100vh - 160px);
+      align-content: center;
+      min-height: calc(100svh - 160px);
+      width: 100%;
 }
 
 .heroText {
       animation: slideInLeft 1s ease-out both;
+      min-width: 0;
 }
 
 .greeting {
@@ -108,6 +110,7 @@
       color: var(--text-secondary);
       margin-bottom: 3rem;
       max-width: 500px;
+      width: 100%;
 }
 
 .heroActions {
@@ -207,6 +210,8 @@
 .heroVisual {
       position: relative;
       animation: slideInRight 1s ease-out both;
+      min-width: 0;
+      width: 100%;
 }
 
 .codeBlock {
@@ -217,12 +222,15 @@
       overflow: hidden;
       box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
       position: relative;
+      width: min(100%, 32rem);
+      margin: 0 auto;
 }
 
 .codeHeader {
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: 1rem;
       padding: 1rem 1.5rem;
       background: rgba(255, 255, 255, 0.03);
       border-bottom: 1px solid var(--border-glass);
@@ -243,6 +251,10 @@
       color: var(--text-secondary);
       font-size: 0.9rem;
       font-family: 'JetBrains Mono', monospace;
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
 }
 
 .codeContent {
@@ -251,6 +263,8 @@
       font-size: 0.9rem;
       line-height: 1.6;
       position: relative;
+      overflow-x: auto;
+      overflow-y: hidden;
 }
 
 .codeLine {
@@ -260,6 +274,7 @@
       transform: translateX(-20px);
       transition: all 0.5s ease;
       margin-bottom: 0.3rem;
+      min-width: max-content;
 }
 
 .codeLineVisible {
@@ -501,18 +516,27 @@
 }
 
 @media (max-width: 968px) {
+      .hero {
+            padding-top: 88px;
+            padding-bottom: 4rem;
+      }
+
       .heroContent {
             grid-template-columns: 1fr;
-            gap: 3rem;
+            gap: 2.5rem;
             text-align: center;
+            min-height: auto;
+            justify-items: center;
       }
 
       .heroText {
-            order: 2;
+            order: 1;
+            width: 100%;
       }
 
       .heroVisual {
-            order: 1;
+            order: 2;
+            width: 100%;
       }
 
       .heroActions {
@@ -523,6 +547,19 @@
             justify-content: center;
       }
 
+      .greeting {
+            justify-content: center;
+      }
+
+      .heroSubtitle {
+            align-items: center;
+      }
+
+      .heroDescription {
+            margin-left: auto;
+            margin-right: auto;
+      }
+
       .floatingIcon {
             display: none;
       }
@@ -530,7 +567,8 @@
 
 @media (max-width: 768px) {
       .hero {
-            padding-top: 60px;
+            padding-top: 84px;
+            padding-bottom: 3.5rem;
       }
 
       .container {
@@ -541,54 +579,98 @@
             gap: 2rem;
       }
 
+      .heroText,
+      .heroVisual {
+            max-width: 100%;
+      }
+
       .heroTitle {
-            font-size: clamp(2rem, 6vw, 3rem);
+            font-size: clamp(2.25rem, 10vw, 3rem);
+      }
+
+      .greeting {
+            justify-content: center;
+            font-size: 1rem;
       }
 
       .heroDescription {
-            font-size: 1rem;
-            margin-bottom: 2rem;
+            font-size: 0.98rem;
+            line-height: 1.7;
+            margin-bottom: 1.75rem;
       }
 
       .heroActions {
             flex-direction: column;
             align-items: center;
             gap: 1rem;
+            width: 100%;
       }
 
       .primaryBtn,
       .secondaryBtn {
             width: 100%;
-            max-width: 300px;
+            max-width: 22rem;
             justify-content: center;
             padding: 1rem 1.5rem;
       }
 
       .codeBlock {
+            width: 100%;
             max-width: 100%;
-            overflow-x: auto;
       }
 
       .codeContent {
             padding: 1rem;
+            font-size: 0.82rem;
       }
 
-      .codeLine {
-            white-space: nowrap;
+      .lineNumber {
+            margin-right: 1rem;
+            min-width: 1.5rem;
+      }
+
+      .scrollIndicator {
+            display: none;
+      }
+
+      .gradientOrb1 {
+            width: 220px;
+            height: 220px;
+      }
+
+      .gradientOrb2 {
+            width: 140px;
+            height: 140px;
       }
 }
 
 @media (max-width: 480px) {
+      .hero {
+            padding-top: 80px;
+      }
+
       .greeting {
             font-size: 1rem;
       }
 
+      .heroTitle {
+            font-size: 2.15rem;
+      }
+
       .role {
-            font-size: 1.3rem;
+            font-size: 1.15rem;
       }
 
       .specialization {
-            font-size: 1rem;
+            font-size: 0.95rem;
+      }
+
+      .codeHeader {
+            padding: 0.9rem 1rem;
+      }
+
+      .codeTitle {
+            font-size: 0.8rem;
       }
 
       .socialLinks {
@@ -599,5 +681,15 @@
             width: 45px;
             height: 45px;
             font-size: 1.1rem;
+      }
+
+      .gradientOrb1 {
+            width: 180px;
+            height: 180px;
+      }
+
+      .gradientOrb2 {
+            width: 120px;
+            height: 120px;
       }
 }
