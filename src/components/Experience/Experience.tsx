@@ -140,7 +140,7 @@ const Experience: React.FC<ExperienceProps> = () => {
               </div>
             </div>
           ))}
-        </div>
+        {/* </div>
 
         <div className={styles.statsContainer}>
           <div className={styles.statCard}>
@@ -181,7 +181,7 @@ const Experience: React.FC<ExperienceProps> = () => {
               <div className={styles.statNumber}>5+</div>
               <div className={styles.statLabel}>Certifications</div>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </section>

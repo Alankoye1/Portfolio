@@ -4,6 +4,7 @@ import styles from './Header.module.css';
 interface HeaderProps { }
 
 const Header: React.FC<HeaderProps> = () => {
+      const resumeFileName = 'Alan Azad Akram _ CV.pdf';
       const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
       const [isScrolled, setIsScrolled] = useState<boolean>(false);
 
@@ -71,11 +72,10 @@ const Header: React.FC<HeaderProps> = () => {
 
                         <div className={styles.headerActions}>
                               <a
-                                    href="/resume.pdf"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
+                                    href="/Alan Azad Akram _ CV.pdf"
+                                    download={resumeFileName}
                                     className={styles.resumeBtn}
-                                    aria-label="Download Resume"
+                                    aria-label="Download CV"
                               >
                                     <i className="fas fa-download"></i>
                                     Resume
