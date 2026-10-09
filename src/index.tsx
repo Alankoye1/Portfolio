@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './styles/tokens.css';
 import './index.css';
 import App from './App';
+import { initAnalytics } from './analytics';
 
 const root = ReactDOM.createRoot(
       document.getElementById('root') as HTMLElement
@@ -12,3 +13,5 @@ root.render(
             <App />
       </React.StrictMode>
 );
+
+initAnalytics();
