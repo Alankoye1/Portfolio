@@ -1,119 +1,106 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import { nav, site } from '../../data/site';
+import Arrow from '../ui/Arrow';
 import styles from './Header.module.css';
 
-interface HeaderProps { }
+/**
+ * Fixed top bar.
+ *  - Scroll-spy: highlights the link for the section you are reading.
+ *  - A lime progress line along the bottom edge fills as you scroll.
+ *  - On phones the links live in a full-screen menu.
+ */
+const Header: React.FC = () => {
+      const [menuOpen, setMenuOpen] = useState<boolean>(false);
+      const [active, setActive] = useState<string>('');
 
-const Header: React.FC<HeaderProps> = () => {
-      const resumeFileName = 'Alan Azad Akram _ CV.pdf';
-      const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
-      const [isScrolled, setIsScrolled] = useState<boolean>(false);
-
+      // Scroll-spy: watch each section and remember which one is mid-screen.
       useEffect(() => {
-            const handleScroll = (): void => {
-                  setIsScrolled(window.scrollY > 50);
-            };
+            const sections = nav
+                  .map((item) => document.getElementById(item.id))
+                  .filter((el): el is HTMLElement => el !== null);
 
-            window.addEventListener('scroll', handleScroll);
-            return () => window.removeEventListener('scroll', handleScroll);
+            const observer = new IntersectionObserver(
+                  (entries) => {
+                        entries.forEach((entry) => {
+                              if (entry.isIntersecting) setActive(entry.target.id);
+                        });
+                  },
+                  { rootMargin: '-45% 0px -50% 0px' }
+            );
+
+            sections.forEach((section) => observer.observe(section));
+            return () => observer.disconnect();
       }, []);
 
-      const handleMenuToggle = (): void => {
-            setIsMenuOpen(!isMenuOpen);
-      };
+      // While the mobile menu is open: lock page scroll and let Escape close it.
+      useEffect(() => {
+            if (!menuOpen) return;
+            const previous = document.body.style.overflow;
+            document.body.style.overflow = 'hidden';
 
-      const scrollToSection = (sectionId: string): void => {
-            const element = document.getElementById(sectionId);
-            if (element) {
-                  element.scrollIntoView({ behavior: 'smooth' });
-                  setIsMenuOpen(false); // Close mobile menu after clicking
-            }
-      };
+            const onKey = (e: KeyboardEvent): void => {
+                  if (e.key === 'Escape') setMenuOpen(false);
+            };
+            window.addEventListener('keydown', onKey);
 
-      const navLinks = [
-            { name: 'Home', href: 'hero' },
-            { name: 'About', href: 'about' },
-            { name: 'Skills', href: 'skills' },
-            { name: 'Experience', href: 'experience' },
-            { name: 'Projects', href: 'projects' },
-            { name: 'Contact', href: 'contact' }
-      ];
+            return () => {
+                  document.body.style.overflow = previous;
+                  window.removeEventListener('keydown', onKey);
+            };
+      }, [menuOpen]);
+
+      const closeMenu = (): void => setMenuOpen(false);
 
       return (
-            <header className={`${styles.header} ${isScrolled ? styles.scrolled : ''}`}>
-                  <div className={styles.container}>
-                        <div className={styles.logo}>
-                              <button
-                                    onClick={() => scrollToSection('hero')}
-                                    className={styles.logoBtn}
-                                    type="button"
-                                    aria-label="Go to home"
-                              >
-                                    <span className={styles.logoSymbol}>{'<'}</span>
-                                    <span className={styles.logoText}>AlanAkram</span>
-                                    <span className={styles.logoSymbol}>{'/>'}</span>
-                              </button>
-                        </div>
+            <header className={styles.header}>
+                  <div className={styles.bar}>
+                        <a href="#top" className={styles.logo} aria-label={`${site.shortName}, back to top`} onClick={closeMenu}>
+                              <span className={styles.mark} aria-hidden="true">A</span>
+                              <span className={styles.logoText}>{site.shortName}</span>
+                        </a>
 
-                        <nav className={`${styles.nav} ${isMenuOpen ? styles.navOpen : ''}`}>
-                              <ul className={styles.navList}>
-                                    {navLinks.map((link) => (
-                                          <li key={link.name} className={styles.navItem}>
-                                                <button
-                                                      onClick={() => scrollToSection(link.href)}
-                                                      className={styles.navLink}
-                                                      type="button"
+                        <nav
+                              id="site-nav"
+                              className={`${styles.nav} ${menuOpen ? styles.open : ''}`}
+                              aria-label="Primary"
+                        >
+                              <ul className={styles.list}>
+                                    {nav.map((item, index) => (
+                                          <li key={item.id}>
+                                                <a
+                                                      href={`#${item.id}`}
+                                                      className={`${styles.link} ${active === item.id ? styles.active : ''}`}
+                                                      aria-current={active === item.id ? 'true' : undefined}
+                                                      onClick={closeMenu}
                                                 >
-                                                      {link.name}
-                                                </button>
+                                                      <span className={styles.index}>0{index + 1}</span>
+                                                      {item.label}
+                                                </a>
                                           </li>
                                     ))}
-                                    <li className={`${styles.navItem} ${styles.mobileResumeItem}`}>
-                                          <a
-                                                href="/resume.pdf"
-                                                download={resumeFileName}
-                                                className={styles.mobileResumeLink}
-                                                onClick={() => setIsMenuOpen(false)}
-                                                aria-label="Download CV"
-                                          >
-                                                <i className="fas fa-download"></i>
-                                                Download CV
-                                          </a>
-                                    </li>
                               </ul>
+                              <a
+                                    href={site.cvUrl}
+                                    download={site.cvFileName}
+                                    className={styles.cv}
+                                    onClick={closeMenu}
+                              >
+                                    Résumé <Arrow dir="down" size={16} />
+                              </a>
                         </nav>
 
-                        <div className={styles.headerActions}>
-                              <a
-                                    href="/Alan Azad Akram _ CV.pdf"
-                                    download={resumeFileName}
-                                    className={styles.resumeBtn}
-                                    aria-label="Download CV"
-                              >
-                                    <i className="fas fa-download"></i>
-                                    Resume
-                              </a>
-
-                              <button
-                                    onClick={handleMenuToggle}
-                                    className={`${styles.menuToggle} ${isMenuOpen ? styles.menuToggleActive : ''}`}
-                                    type="button"
-                                    aria-label="Toggle menu"
-                                    aria-expanded={isMenuOpen}
-                              >
-                                    <span className={styles.hamburgerLine}></span>
-                                    <span className={styles.hamburgerLine}></span>
-                                    <span className={styles.hamburgerLine}></span>
-                              </button>
-                        </div>
+                        <button
+                              type="button"
+                              className={styles.toggle}
+                              aria-expanded={menuOpen}
+                              aria-controls="site-nav"
+                              onClick={() => setMenuOpen((open) => !open)}
+                        >
+                              <span className={styles.toggleText}>{menuOpen ? 'Close' : 'Menu'}</span>
+                              <span className={styles.burger} aria-hidden="true" />
+                        </button>
                   </div>
-
-                  {/* Mobile menu overlay */}
-                  {isMenuOpen && (
-                        <div
-                              className={styles.mobileOverlay}
-                              onClick={() => setIsMenuOpen(false)}
-                        />
-                  )}
+                  <div className={styles.progress} aria-hidden="true" />
             </header>
       );
 };

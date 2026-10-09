@@ -1,0 +1,98 @@
+/* Fills the hero section, sits BEHIND the text and glass panels. */
+.scene {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+}
+
+.canvasWrap {
+      position: absolute;
+      inset: 0;
+}
+
+.canvasFade {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 1.2s var(--ease-out);
+}
+
+.canvasLive {
+      opacity: 1;
+}
+
+/* ---------- CSS fallback orb ----------
+ * Sized and placed to match the 3D orb exactly (centre at 77% / 60% of the hero,
+ * diameter = the same min() rule the 3D scene uses), so the hand-over is invisible. */
+.cssOrb {
+      --d: min(38svh, 30vw);
+      position: absolute;
+      left: 77%;
+      top: 60%;
+      width: var(--d);
+      margin: calc(var(--d) / -2) 0 0 calc(var(--d) / -2);
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background:
+            radial-gradient(circle at 30% 26%, #f6ffd1 0%, rgba(246, 255, 209, 0) 22%),
+            radial-gradient(circle at 36% 32%, #d8ff6a 0%, var(--lime) 30%, #6f9f14 68%, #1f3205 100%);
+      box-shadow:
+            inset -1.2rem -1.6rem 3rem rgba(16, 20, 10, 0.55),
+            0 0 6rem rgba(198, 255, 61, 0.28);
+      animation: float 7s ease-in-out infinite;
+      transition: opacity 0.8s var(--ease-out);
+}
+
+.cssOrbHidden {
+      opacity: 0;
+}
+
+/* thin tilted ring, echoing the 3D version */
+.cssOrbRing {
+      position: absolute;
+      inset: -20%;
+      border: 1px solid rgba(198, 255, 61, 0.55);
+      border-radius: 50%;
+      transform: rotateX(68deg) rotateZ(-12deg);
+}
+
+@keyframes float {
+
+      0%,
+      100% {
+            translate: 0 0;
+      }
+
+      50% {
+            translate: 0 -1rem;
+      }
+}
+
+@keyframes fadeIn {
+      from {
+            opacity: 0;
+            scale: 0.85;
+      }
+}
+
+@media (max-width: 820px) {
+      .cssOrb {
+            --d: clamp(11rem, 44vw, 18rem);
+            left: auto;
+            right: -12%;
+            top: 24%;
+            margin: 0;
+            opacity: 0.85;
+      }
+}
+
+@media (prefers-reduced-motion: reduce) {
+      .cssOrb {
+            animation: none;
+      }
+
+      .canvasFade {
+            transition: none;
+      }
+}

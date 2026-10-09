@@ -1,172 +1,129 @@
-import React, { useState, useEffect } from 'react';
+import React, { useRef } from 'react';
+import { site, stickerText } from '../../data/site';
+import { useReducedMotion } from '../../hooks/useReducedMotion';
+import Scene3D from '../3d/Scene3D';
+import Arrow from '../ui/Arrow';
+import LocalTime from '../ui/LocalTime';
 import styles from './Hero.module.css';
 
-interface HeroProps { }
+const NAME_LINES = ['Alan', 'Azad', 'Akram'];
 
-const Hero: React.FC<HeroProps> = () => {
-      const [currentCodeLine, setCurrentCodeLine] = useState<number>(0);
+/**
+ * Hero = the first screen. Three things happen here:
+ *  1. On load, every letter of the name slides up out of a mask (pure CSS).
+ *  2. A lime sticker with circling text spins and also turns as you scroll.
+ *  3. On desktop, letters near your mouse get lighter, like a spotlight.
+ */
+const Hero: React.FC = () => {
+      const reduced = useReducedMotion();
 
-      const codeLines: string[] = [
-            "interface Developer {",
-            "  name: string;",
-            "  skills: string[];",
-            "  passion: boolean;",
-            "  experience: number;",
-            "}",
-            "",
-            "const alan: Developer = {",
-            "  name: 'Alan Azad Akram',",
-            "  skills: ['Flutter', 'Dart', 'Firebase'],",
-            "  passion: true,",
-            "  experience: 1",
-            "};"
-      ];
+      // useRef holds a value that survives re-renders WITHOUT causing one.
+      // Here it stores every letter element so the mouse handler can reach them.
+      const letters = useRef<HTMLSpanElement[]>([]);
+      const frame = useRef<number>(0);
 
-      useEffect(() => {
-            const timer = setInterval(() => {
-                  setCurrentCodeLine((prev) => (prev + 1) % codeLines.length);
-            }, 2000);
+      const handlePointerMove = (e: React.PointerEvent<HTMLElement>): void => {
+            // Only react to a real mouse, and only if motion is allowed.
+            if (reduced || e.pointerType !== 'mouse') return;
+            const { clientX, clientY } = e;
 
-            return () => clearInterval(timer);
-      }, [codeLines.length]);
-
-      const handleScrollToContact = (): void => {
-            const contactSection = document.getElementById('contact');
-            if (contactSection) {
-                  contactSection.scrollIntoView({ behavior: 'smooth' });
-            }
+            cancelAnimationFrame(frame.current);
+            frame.current = requestAnimationFrame(() => {
+                  letters.current.forEach((el) => {
+                        if (!el) return;
+                        const rect = el.getBoundingClientRect();
+                        const dx = clientX - (rect.left + rect.width / 2);
+                        const dy = clientY - (rect.top + rect.height / 2);
+                        const distance = Math.hypot(dx, dy);
+                        // Close to the cursor = lighter weight (400). Far away = heavy (800).
+                        const weight = Math.round(Math.min(800, Math.max(400, 400 + distance * 1.2)));
+                        el.style.fontVariationSettings = `"wght" ${weight}`;
+                  });
+            });
       };
 
-      const handleScrollToProjects = (): void => {
-            const projectsSection = document.getElementById('projects');
-            if (projectsSection) {
-                  projectsSection.scrollIntoView({ behavior: 'smooth' });
-            }
+      const resetLetters = (): void => {
+            cancelAnimationFrame(frame.current);
+            letters.current.forEach((el) => {
+                  if (el) el.style.fontVariationSettings = '';
+            });
       };
+
+      let letterIndex = 0;
 
       return (
-            <section className={styles.hero} id="hero">
-                  <div className={styles.container}>
-                        <div className={styles.heroContent}>
-                              <div className={styles.heroText}>
-                                    <div className={styles.greeting}>
-                                          <span className={styles.wave}>👋</span>
-                                          Hello, I'm
-                                    </div>
+            <section
+                  id="top"
+                  className={styles.hero}
+                  aria-labelledby="hero-title"
+                  onPointerMove={handlePointerMove}
+                  onPointerLeave={resetLetters}
+            >
+                  {/* 3D orb (or its CSS twin) sits behind everything else in the hero */}
+                  <Scene3D />
 
-                                    <h1 className={styles.heroTitle}>
-                                          <span className={styles.firstName}>Alan Azad</span>
-                                          <span className={styles.lastName}>Akram</span>
-                                    </h1>
-
-                                    <div className={styles.heroSubtitle}>
-                                          <span className={styles.role}>Mobile App Developer</span>
-                                          <span className={styles.specialization}>& Flutter Enthusiast</span>
-                                    </div>
-
-                                    <p className={styles.heroDescription}>
-                                          I build modern, cross-platform mobile applications using Flutter.
-                                          Passionate about creating seamless user experiences and bringing ideas to life on mobile.
-                                    </p>
-
-                                    <div className={styles.heroActions}>
-                                          <button
-                                                onClick={handleScrollToProjects}
-                                                className={styles.primaryBtn}
-                                                type="button"
-                                          >
-                                                <i className="fas fa-rocket"></i>
-                                                View My Work
-                                          </button>
-                                          <button
-                                                onClick={handleScrollToContact}
-                                                className={styles.secondaryBtn}
-                                                type="button"
-                                          >
-                                                <i className="fas fa-envelope"></i>
-                                                Get In Touch
-                                          </button>
-                                    </div>
-
-                                    <div className={styles.socialLinks}>
-                                          <a
-                                                href="https://github.com/Alankoye1"
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                className={styles.socialLink}
-                                                aria-label="GitHub Profile"
-                                          >
-                                                <i className="fab fa-github"></i>
-                                          </a>
-                                          <a
-                                                href="https://linkedin.com/in/alanazadakram"
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                className={styles.socialLink}
-                                                aria-label="LinkedIn Profile"
-                                          >
-                                                <i className="fab fa-linkedin"></i>
-                                          </a>
-                                    </div>
-                              </div>
-
-                              <div className={styles.heroVisual}>
-                                    <div className={styles.codeBlock}>
-                                          <div className={styles.codeHeader}>
-                                                <div className={styles.windowControls}>
-                                                      <span className={styles.controlDot} style={{ background: '#ff5f56' }}></span>
-                                                      <span className={styles.controlDot} style={{ background: '#ffbd2e' }}></span>
-                                                      <span className={styles.controlDot} style={{ background: '#27ca3f' }}></span>
-                                                </div>
-                                                <div className={styles.codeTitle}>developer.ts</div>
-                                          </div>
-
-                                          <div className={styles.codeContent}>
-                                                {codeLines.map((line, index) => (
-                                                      <div
-                                                            key={index}
-                                                            className={`${styles.codeLine} ${index <= currentCodeLine ? styles.codeLineVisible : ''
-                                                                  }`}
-                                                            style={{ animationDelay: `${index * 0.1}s` }}
-                                                      >
-                                                            <span className={styles.lineNumber}>{(index + 1).toString().padStart(2, '0')}</span>
-                                                            <span className={styles.lineContent}>
-                                                                  {line || '\u00A0'} {/* Non-breaking space for empty lines */}
-                                                            </span>
-                                                      </div>
-                                                ))}
-                                          </div>
-
-                                          <div className={styles.cursor}>|</div>
-                                    </div>
-
-                                    <div className={styles.floatingElements}>
-                                          <div className={styles.floatingIcon} style={{ '--delay': '0s' } as React.CSSProperties}>
-                                                <i className="fab fa-react"></i>
-                                          </div>
-                                          <div className={styles.floatingIcon} style={{ '--delay': '1s' } as React.CSSProperties}>
-                                                <i className="fab fa-node-js"></i>
-                                          </div>
-                                          <div className={styles.floatingIcon} style={{ '--delay': '2s' } as React.CSSProperties}>
-                                                <i className="fab fa-js-square"></i>
-                                          </div>
-                                          <div className={styles.floatingIcon} style={{ '--delay': '3s' } as React.CSSProperties}>
-                                                <i className="fab fa-github"></i>
-                                          </div>
-                                    </div>
-                              </div>
-                        </div>
-
-                        <div className={styles.scrollIndicator}>
-                              <div className={styles.scrollDot}></div>
-                              <div className={styles.scrollText}>Scroll to explore</div>
-                        </div>
+                  <div className={styles.meta}>
+                        <span>Portfolio / {new Date().getFullYear()}</span>
+                        <span>
+                              {site.location} · <LocalTime timeZone={site.timeZone} />
+                        </span>
+                        <span className={styles.metaHide}>36.19°N 44.01°E</span>
                   </div>
 
-                  <div className={styles.heroBackground}>
-                        <div className={styles.gridPattern}></div>
-                        <div className={styles.gradientOrb1}></div>
-                        <div className={styles.gradientOrb2}></div>
+                  <h1 id="hero-title" className={styles.title} aria-label={site.name}>
+                        {NAME_LINES.map((word, lineIndex) => (
+                              <span key={word} className={`${styles.line} ${styles[`line${lineIndex}`]}`} aria-hidden="true">
+                                    {word.split('').map((char) => {
+                                          const i = letterIndex++;
+                                          return (
+                                                <span
+                                                      key={i}
+                                                      className={styles.letter}
+                                                      style={{ '--i': i } as React.CSSProperties}
+                                                      ref={(el) => {
+                                                            if (el) letters.current[i] = el;
+                                                      }}
+                                                >
+                                                      {char}
+                                                </span>
+                                          );
+                                    })}
+                              </span>
+                        ))}
+                  </h1>
+
+                  <a href="#projects" className={styles.sticker}>
+                        <span className="sr-only">See my work</span>
+                        <svg className={styles.ring} viewBox="0 0 200 200" aria-hidden="true" focusable="false">
+                              <defs>
+                                    <path id="ring-path" d="M100,100 m-78,0 a78,78 0 1,1 156,0 a78,78 0 1,1 -156,0" />
+                              </defs>
+                              <text className={styles.ringText}>
+                                    <textPath href="#ring-path" textLength="486" lengthAdjust="spacing">
+                                          {stickerText}
+                                    </textPath>
+                              </text>
+                        </svg>
+                        <span className={styles.stickerArrow}>
+                              <Arrow dir="down" size={44} />
+                        </span>
+                  </a>
+
+                  <div className={styles.bottom}>
+                        <div className={styles.copy}>
+                              <p className={styles.role}>
+                                    {site.role} <span aria-hidden="true">—</span> {site.roleLine}
+                              </p>
+                              <p className={styles.tagline}>{site.tagline}</p>
+                        </div>
+                        <div className={styles.actions}>
+                              <a href="#projects" className={styles.primary}>
+                                    See the work <Arrow dir="down" size={18} />
+                              </a>
+                              <a href="#contact" className={styles.secondary}>
+                                    Say hi
+                              </a>
+                        </div>
                   </div>
             </section>
       );

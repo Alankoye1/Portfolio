@@ -1,380 +1,129 @@
 .skills {
-      padding: 120px 0;
-      background: var(--bg-primary);
-      position: relative;
-      overflow: hidden;
+      padding-block: var(--section-y);
+      overflow: clip;
 }
 
-.skills::before {
-      content: '';
+.head {
+      position: relative;
+      display: grid;
+      gap: 1.6rem;
+      max-width: var(--max);
+      margin-inline: auto;
+      padding-inline: var(--gutter);
+      margin-bottom: clamp(2.5rem, 6vw, 5rem);
+}
+
+.accent {
       position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background:
-            radial-gradient(circle at 30% 40%, rgba(0, 255, 255, 0.1) 0%, transparent 50%),
-            radial-gradient(circle at 70% 60%, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
+      right: var(--gutter);
+      bottom: -1rem;
       pointer-events: none;
-      z-index: 1;
 }
 
-.container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 2rem;
-      position: relative;
-      z-index: 2;
+.title {
+      font-family: var(--font-display);
+      font-size: var(--fs-h2);
+      font-weight: 800;
+      line-height: 0.92;
+      letter-spacing: -0.045em;
 }
 
-.sectionTitle {
-      text-align: center;
-      margin-bottom: 4rem;
+.marquees {
+      display: grid;
+      gap: clamp(0.2rem, 1vw, 1rem);
+      /* the strips tilt slightly so the section feels less like a table */
+      rotate: -2deg;
+      margin-inline: -4vw;
+      padding-block: clamp(1rem, 3vw, 2.5rem);
+      border-radius: var(--radius);
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      -webkit-backdrop-filter: var(--glass-blur);
+      backdrop-filter: var(--glass-blur);
+      box-shadow: var(--glass-shadow);
 }
 
-.sectionTitle h2 {
-      font-size: 3rem;
-      font-weight: 700;
-      color: var(--text-primary);
-      margin-bottom: 1rem;
-      letter-spacing: -0.02em;
-      background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
-      background-clip: text;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+.groups {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      column-gap: clamp(1.5rem, 4vw, 4rem);
+      max-width: var(--max);
+      margin: clamp(4rem, 9vw, 8rem) auto 0;
+      padding-inline: var(--gutter);
 }
 
-.sectionTitle p {
-      font-size: 1.2rem;
-      color: var(--text-secondary);
-      letter-spacing: 0.01em;
+.group {
+      display: grid;
+      gap: 1rem;
+      align-content: start;
+      padding: clamp(1.3rem, 3vw, 2rem);
+      border-radius: var(--radius);
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      -webkit-backdrop-filter: var(--glass-blur);
+      backdrop-filter: var(--glass-blur);
+      box-shadow: var(--glass-shadow);
 }
 
-.filterContainer {
-      margin-bottom: 3rem;
+/* Stagger the three columns down the page for a less rigid feel */
+.g1 {
+      margin-top: clamp(0rem, 4vw, 3.5rem);
+}
+
+.g2 {
+      margin-top: clamp(0rem, 8vw, 7rem);
+}
+
+.groupTitle {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 1.2rem + 2vw, 3rem);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+}
+
+.blurb {
+      max-width: 30ch;
+      color: var(--bone-dim);
+}
+
+.items {
       display: flex;
-      justify-content: center;
-}
-
-.filterButtons {
-      display: flex;
-      gap: 0.5rem;
       flex-wrap: wrap;
-      justify-content: center;
-      width: min(100%, 32rem);
-      padding: 0.5rem;
-      background: var(--bg-glass);
-      backdrop-filter: blur(20px);
-      border: 1px solid var(--border-glass);
-      border-radius: 16px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      gap: 0.5rem;
 }
 
-.filterBtn {
-      padding: 0.75rem 1.5rem;
-      background: transparent;
-      color: var(--text-secondary);
-      border: none;
-      border-radius: 10px;
-      font-weight: 500;
-      font-size: 0.9rem;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
-      font-family: inherit;
+.items li {
+      padding: 0.35rem 0.9rem;
+      border: 1px solid var(--glass-border);
+      background: var(--glass);
+      border-radius: 999px;
+      font-family: var(--font-mono);
+      font-size: var(--fs-label);
+      letter-spacing: 0.06em;
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
 }
 
-.filterBtn::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
-      transition: left 0.3s ease;
-      z-index: -1;
+.items li:hover {
+      background: var(--lime);
+      border-color: var(--lime);
+      color: var(--lime-ink);
 }
 
-.filterBtn:hover::before,
-.filterBtn.active::before {
-      left: 0;
-}
-
-.filterBtn:hover,
-.filterBtn.active {
-      color: var(--bg-primary);
-      transform: translateY(-1px);
-}
-
-.skillsGrid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 2rem;
-      margin-bottom: 4rem;
-}
-
-.skillCard {
-      background: var(--bg-glass);
-      backdrop-filter: blur(20px);
-      border: 1px solid var(--border-glass);
-      border-radius: 20px;
-      padding: 2rem;
-      text-align: center;
-      transition: all 0.4s ease;
-      position: relative;
-      overflow: hidden;
-      animation: slideInUp 0.6s ease-out both;
-      cursor: pointer;
-}
-
-.skillCard::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: linear-gradient(135deg, rgba(0, 255, 255, 0.05), rgba(139, 92, 246, 0.05));
-      opacity: 0;
-      transition: opacity 0.3s ease;
-      z-index: -1;
-}
-
-.skillCard:hover {
-      transform: translateY(-15px) scale(1.03);
-      border-color: var(--accent-cyan);
-      box-shadow:
-            0 20px 40px rgba(0, 0, 0, 0.3),
-            0 0 30px rgba(0, 255, 255, 0.2);
-}
-
-.skillCard:hover::before {
-      opacity: 1;
-}
-
-.skillIcon {
-      font-size: 3.5rem;
-      margin-bottom: 1rem;
-      display: block;
-      transition: all 0.3s ease;
-      filter: drop-shadow(0 0 10px var(--skill-color, var(--accent-cyan)));
-}
-
-.skillCard:hover .skillIcon {
-      transform: scale(1.1) rotateY(360deg);
-}
-
-.skillName {
-      font-size: 1.2rem;
-      color: var(--text-primary);
-      margin-bottom: 0.5rem;
-      font-weight: 600;
-      letter-spacing: -0.01em;
-}
-
-.skillCategory {
-      font-size: 0.9rem;
-      color: var(--accent-cyan);
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      font-weight: 500;
-      margin-bottom: 1.5rem;
-}
-
-.skillLevel {
-      margin-top: 1.5rem;
-}
-
-.levelBar {
-      height: 6px;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 3px;
-      overflow: hidden;
-      margin-bottom: 0.5rem;
-      position: relative;
-}
-
-.levelProgress {
-      height: 100%;
-      background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
-      border-radius: 3px;
-      transition: width 0.8s ease;
-      position: relative;
-}
-
-.levelProgress::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-      animation: shimmer 2s infinite;
-}
-
-@keyframes shimmer {
-      0% {
-            transform: translateX(-100%);
-      }
-
-      100% {
-            transform: translateX(100%);
-      }
-}
-
-.levelText {
-      font-size: 0.9rem;
-      color: var(--text-secondary);
-      font-weight: 600;
-}
-
-.statsContainer {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 2rem;
-      margin-top: 4rem;
-}
-
-.statCard {
-      display: flex;
-      align-items: center;
-      gap: 1.5rem;
-      padding: 2rem;
-      background: var(--bg-glass);
-      backdrop-filter: blur(20px);
-      border: 1px solid var(--border-glass);
-      border-radius: 16px;
-      transition: all 0.3s ease;
-      animation: fadeInUp 0.8s ease-out both;
-}
-
-.statCard:hover {
-      transform: translateY(-5px);
-      border-color: var(--accent-cyan);
-      box-shadow: 0 10px 30px rgba(0, 255, 255, 0.1);
-}
-
-.statIcon {
-      font-size: 2.5rem;
-      width: 70px;
-      height: 70px;
-      background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-}
-
-.statContent h4 {
-      font-size: 1.2rem;
-      color: var(--text-primary);
-      margin-bottom: 0.5rem;
-      font-weight: 600;
-}
-
-.statContent p {
-      color: var(--text-secondary);
-      font-size: 0.95rem;
-      margin: 0;
-}
-
-@keyframes slideInUp {
-      from {
-            opacity: 0;
-            transform: translateY(30px);
-      }
-
-      to {
-            opacity: 1;
-            transform: translateY(0);
-      }
-}
-
-@keyframes fadeInUp {
-      from {
-            opacity: 0;
-            transform: translateY(20px);
-      }
-
-      to {
-            opacity: 1;
-            transform: translateY(0);
-      }
-}
-
-@media (max-width: 768px) {
-      .skills {
-            padding: 80px 0;
-      }
-
-      .container {
-            padding: 0 1rem;
-      }
-
-      .sectionTitle h2 {
-            font-size: clamp(2rem, 9vw, 2.5rem);
-      }
-
-      .sectionTitle p {
-            font-size: 1rem;
-      }
-
-      .filterButtons {
-            gap: 0.3rem;
-            padding: 0.3rem;
-      }
-
-      .filterBtn {
-            padding: 0.6rem 1rem;
-            font-size: 0.8rem;
-      }
-
-      .skillsGrid {
+@media (max-width: 860px) {
+      .groups {
             grid-template-columns: 1fr;
-            gap: 1.5rem;
+            row-gap: 2.5rem;
       }
 
-      .skillCard {
-            padding: 1.5rem;
-      }
-
-      .skillIcon {
-            font-size: 2.8rem;
-      }
-
-      .statsContainer {
-            grid-template-columns: 1fr;
-            gap: 1.5rem;
-      }
-
-      .statCard {
-            padding: 1.5rem;
-            gap: 1rem;
-      }
-
-      .statIcon {
-            width: 60px;
-            height: 60px;
-            font-size: 2rem;
+      .g1,
+      .g2 {
+            margin-top: 0;
       }
 }
 
-@media (max-width: 480px) {
-      .filterButtons {
-            width: 100%;
-      }
-
-      .filterBtn {
-            flex: 1 1 calc(50% - 0.3rem);
-            min-width: 0;
-      }
-
-      .statCard {
-            flex-direction: column;
-            text-align: center;
+@media (prefers-reduced-motion: reduce) {
+      .marquees {
+            rotate: none;
+            margin-inline: 0;
       }
 }

@@ -1,0 +1,25 @@
+/*
+ * Shared glass highlight for anything using useTilt().
+ * Add this class next to the element's own class; the ::after layer is a soft
+ * light that follows the cursor (--mx / --my) and fades with --glow.
+ */
+.sheen {
+      position: relative;
+}
+
+.sheen::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      pointer-events: none;
+      background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(255, 255, 255, 0.28), rgba(255, 255, 255, 0.06) 35%, transparent 60%);
+      opacity: var(--glow, 0);
+      transition: opacity 0.35s var(--ease-out);
+}
+
+@media (prefers-reduced-motion: reduce) {
+      .sheen::after {
+            display: none;
+      }
+}

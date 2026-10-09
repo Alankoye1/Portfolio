@@ -1,124 +1,51 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { skills } from '../../data/site';
+import AccentOrb from '../3d/AccentOrb';
+import Marquee from '../ui/Marquee';
+import Reveal from '../ui/Reveal';
+import SectionLabel from '../ui/SectionLabel';
 import styles from './Skills.module.css';
 
-interface Skill {
-      name: string;
-      icon: string;
-      level: number;
-      category: string;
-      color: string;
-}
-
-interface SkillsProps { }
-
-const Skills: React.FC<SkillsProps> = () => {
-      const [filter, setFilter] = useState<string>('All');
-
-      const skills: Skill[] = [
-            { name: 'Flutter', icon: 'devicon-flutter-plain', level: 70, category: 'Mobile', color: '#02569B' },
-            { name: 'Dart', icon: 'devicon-dart-plain', level: 80, category: 'Mobile', color: '#0175C2' },
-            { name: 'JavaScript', icon: 'devicon-javascript-plain', level: 20, category: 'Frontend', color: '#F7DF1E' },
-            { name: 'React', icon: 'devicon-react-original', level: 10, category: 'Frontend', color: '#61DAFB' },
-            { name: 'PHP', icon: 'devicon-php-plain', level: 10, category: 'Backend', color: '#777BB4' },
-            // { name: 'Laravel', icon: 'devicon-laravel-plain', level: 40, category: 'Backend', color: '#FF2D20' },
-            { name: 'MySQL', icon: 'devicon-mysql-plain', level: 50, category: 'Database', color: '#4479A1' },
-            { name: 'Oracle', icon: 'devicon-oracle-original', level: 50, category: 'Database', color: '#F80000' },
-            { name: 'Firebase', icon: 'devicon-firebase-plain', level: 70, category: 'Database', color: '#FFCA28' }
-      ];
-
-      const categories: string[] = ['All', 'Mobile', 'Frontend', 'Backend', 'Database'];
-
-      const filteredSkills: Skill[] = filter === 'All'
-            ? skills
-            : skills.filter(skill => skill.category === filter);
-
-      const handleFilterChange = (category: string): void => {
-            setFilter(category);
-      };
-
-      return (
-            <section className={styles.skills} id="skills">
-                  <div className={styles.container}>
-                        <div className={styles.sectionTitle}>
-                              <h2>Skills & Technologies</h2>
-                              <p>The tools and technologies I use to bring ideas to life</p>
-                        </div>
-
-                        <div className={styles.filterContainer}>
-                              <div className={styles.filterButtons}>
-                                    {categories.map((category) => (
-                                          <button
-                                                key={category}
-                                                className={`${styles.filterBtn} ${filter === category ? styles.active : ''}`}
-                                                onClick={() => handleFilterChange(category)}
-                                                type="button"
-                                          >
-                                                {category}
-                                          </button>
-                                    ))}
-                              </div>
-                        </div>
-
-                        <div className={styles.skillsGrid}>
-                              {filteredSkills.map((skill, index) => (
-                                    <div
-                                          key={skill.name}
-                                          className={styles.skillCard}
-                                          style={{
-                                                animationDelay: `${index * 0.1}s`,
-                                                '--skill-color': skill.color
-                                          } as React.CSSProperties}
-                                    >
-                                          <div className={styles.skillIcon}>
-                                                <i className={skill.icon}></i>
-                                          </div>
-                                          <h3 className={styles.skillName}>{skill.name}</h3>
-                                          <p className={styles.skillCategory}>{skill.category}</p>
-                                          <div className={styles.skillLevel}>
-                                                <div className={styles.levelBar}>
-                                                      <div
-                                                            className={styles.levelProgress}
-                                                            style={{ width: `${skill.level}%` }}
-                                                      ></div>
-                                                </div>
-                                                <span className={styles.levelText}>{skill.level}%</span>
-                                          </div>
-                                    </div>
-                              ))}
-                        </div>
-
-                        <div className={styles.statsContainer}>
-                              <div className={styles.statCard}>
-                                    <div className={styles.statIcon}>
-                                          <i className="fas fa-mobile-alt"></i>
-                                    </div>
-                                    <div className={styles.statContent}>
-                                          <h4>Mobile Development</h4>
-                                          <p>Advanced Flutter developer building cross-platform apps</p>
-                                    </div>
-                              </div>
-                              <div className={styles.statCard}>
-                                    <div className={styles.statIcon}>
-                                          <i className="fas fa-code"></i>
-                                    </div>
-                                    <div className={styles.statContent}>
-                                          <h4>Web Technologies</h4>
-                                          <p>Foundational knowledge in React, JavaScript, PHP & Laravel</p>
-                                    </div>
-                              </div>
-                              <div className={styles.statCard}>
-                                    <div className={styles.statIcon}>
-                                          <i className="fas fa-database"></i>
-                                    </div>
-                                    <div className={styles.statContent}>
-                                          <h4>Databases</h4>
-                                          <p>Working with MySQL, Oracle, and Firebase</p>
-                                    </div>
-                              </div>
-                        </div>
+/**
+ * Skills = two giant opposite-direction marquees (the "wow") plus three short
+ * columns underneath (the "what it actually means"). No fake percentage bars:
+ * honest one-line context says more than "React 40%".
+ */
+const Skills: React.FC = () => (
+      <section id="skills" className={styles.skills} aria-labelledby="skills-title">
+            <div className={styles.head}>
+                  <Reveal>
+                        <SectionLabel number="04" title="Skills" />
+                  </Reveal>
+                  <Reveal delay={100}>
+                        <h2 id="skills-title" className={styles.title}>
+                              {skills.heading}
+                        </h2>
+                  </Reveal>
+                  <div className={styles.accent}>
+                        <AccentOrb />
                   </div>
-            </section>
-      );
-};
+            </div>
+
+            <div className={styles.marquees}>
+                  <Marquee items={skills.rowOne} duration={32} />
+                  <Marquee items={skills.rowTwo} duration={38} reverse outline />
+            </div>
+
+            <div className={styles.groups}>
+                  {skills.groups.map((group, i) => (
+                        <Reveal key={group.title} delay={i * 110} className={`${styles.group} ${styles[`g${i}`]}`}>
+                              <h3 className={styles.groupTitle}>{group.title}</h3>
+                              <p className={styles.blurb}>{group.blurb}</p>
+                              <ul className={styles.items}>
+                                    {group.items.map((item) => (
+                                          <li key={item}>{item}</li>
+                                    ))}
+                              </ul>
+                        </Reveal>
+                  ))}
+            </div>
+      </section>
+);
 
 export default Skills;

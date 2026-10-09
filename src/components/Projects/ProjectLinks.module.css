@@ -1,0 +1,71 @@
+.links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+}
+
+.primary,
+.secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      padding: 0.85rem 1.4rem;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: var(--fs-small);
+      transition: background 0.25s, color 0.25s, border-color 0.25s;
+}
+
+.primary svg,
+.secondary svg {
+      transition: translate 0.3s var(--ease-out);
+}
+
+.primary:hover svg,
+.secondary:hover svg {
+      translate: 3px -3px;
+}
+
+/* dark backgrounds */
+.primary {
+      background: var(--lime);
+      color: var(--lime-ink);
+}
+
+.primary:hover {
+      background: var(--bone);
+}
+
+.secondary {
+      border: 1px solid var(--bone);
+}
+
+.secondary:hover {
+      background: var(--bone);
+      color: var(--ink);
+}
+
+/* lime panel */
+.light .primary {
+      background: var(--ink);
+      color: var(--lime);
+}
+
+.light .primary:hover {
+      background: var(--bone);
+      color: var(--ink);
+}
+
+.light .secondary {
+      border-color: var(--ink);
+      color: var(--ink);
+}
+
+.light .secondary:hover {
+      background: var(--ink);
+      color: var(--lime);
+}
+
+.light :focus-visible {
+      outline-color: var(--ink);
+}

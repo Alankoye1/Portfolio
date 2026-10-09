@@ -1,0 +1,56 @@
+/* Design tokens: the one place colors, fonts and sizes are defined. */
+:root {
+      color-scheme: dark;
+
+      /* Palette: warm ink, bone paper, one acid-lime accent */
+      --ink: #090b10;
+      --ink-2: #0f121a;
+      --ink-3: #181c27;
+      --bone: #eef1f7;
+      --bone-dim: #aab2c3;
+      --line: rgba(255, 255, 255, 0.14);
+      --lime: #c6ff3d;
+      --lime-ink: #10140a;
+
+      /* Glass: translucent white over dark, frosted by backdrop blur */
+      --glass: rgba(255, 255, 255, 0.07);
+      --glass-strong: rgba(255, 255, 255, 0.12);
+      --glass-tint: rgba(198, 255, 61, 0.1);
+      --glass-border: rgba(255, 255, 255, 0.2);
+      --glass-blur: blur(20px) saturate(150%);
+      --glass-shadow: 0 1.5rem 3rem -1rem rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.22);
+      --radius: 1.75rem;
+      --radius-sm: 1rem;
+
+      /* Background orbs: the colors the glass refracts */
+      --orb-1: #c6ff3d;
+      --orb-2: #3b82f6;
+      --orb-3: #8b5cf6;
+
+      /* Fonts */
+      --font-display: 'Bricolage Grotesque Variable', 'Arial Black', sans-serif;
+      --font-body: 'Instrument Sans Variable', 'Helvetica Neue', Arial, sans-serif;
+      --font-mono: 'JetBrains Mono Variable', ui-monospace, 'Cascadia Code', Consolas, monospace;
+
+      /* Fluid type scale */
+      --fs-label: 0.75rem;
+      --fs-small: 0.9rem;
+      --fs-body: clamp(1rem, 0.95rem + 0.25vw, 1.15rem);
+      --fs-lead: clamp(1.25rem, 1rem + 1.2vw, 2rem);
+      --fs-h2: clamp(2.6rem, 1.5rem + 5.5vw, 7rem);
+      --fs-mega: clamp(4.2rem, 1rem + 19vw, 19rem);
+
+      /* Layout */
+      --gutter: clamp(1.1rem, 4vw, 3.5rem);
+      --max: 90rem;
+      --header-h: 4.25rem;
+      --section-y: clamp(6rem, 14vw, 13rem);
+
+      /* Motion */
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-io: cubic-bezier(0.65, 0, 0.35, 1);
+
+      /* Written by useScrollProgress(): 0 to 1, and pixels scrolled */
+      --scroll: 0;
+      --scroll-px: 0;
+}
